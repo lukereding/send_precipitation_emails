@@ -1,4 +1,5 @@
 import smtplib
+from datetime import timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from numbers import Number
@@ -16,6 +17,7 @@ from prefect.tasks.control_flow.conditional import ifelse
 @task
 def dummy_task():
     pass
+
 
 @task(max_retries=5, retry_delay=timedelta(1))
 def send_email(amount: Number, length_of_time: int) -> None:
@@ -79,6 +81,7 @@ def get_estimated_precipitation(hours: int = 18) -> Tuple[Number, int]:
         raise Expection("Could not download weather data.")
     # the estimate precipitation is reported in mm, bot inches like we want
     return mm_to_in(total_estimated_precip), periods * 12
+
 
 # create schedule for the Flow
 daily_schedule = CronSchedule("0 5 * * *")
