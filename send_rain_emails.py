@@ -80,7 +80,7 @@ def get_estimated_precipitation(hours: int = 18) -> Tuple[Number, int]:
     else:
         raise Expection("Could not download weather data.")
     # the estimate precipitation is reported in mm, bot inches like we want
-    return mm_to_in(total_estimated_precip), periods * 12
+    return mm_to_in(total_estimated_precip), periods * 6
 
 
 # create schedule for the Flow
