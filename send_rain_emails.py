@@ -88,6 +88,6 @@ daily_schedule = CronSchedule("0 5 * * *")
 
 with Flow("weather_email", schedule=daily_schedule) as flow:
     result = get_estimated_precipitation()
-    ifelse(result[0] < 0.2, dummy_task, send_email(result[0], result[1]))
+    ifelse(result[0] < 0.05, dummy_task, send_email(result[0], result[1]))
 
 flow.run()
